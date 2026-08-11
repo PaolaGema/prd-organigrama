@@ -149,56 +149,63 @@ svg g.pop:nth-of-type(7){animation-delay:.46s}
   grid-template-columns:262px minmax(0,1fr);gap:0 60px;align-items:start}
 @media(max-width:1000px){.doc{grid-template-columns:1fr;gap:0;padding-top:28px}}
 
-/* ── Índice lateral ───────────────────────────────────────────── */
-.rail{position:sticky;top:26px;max-height:calc(100vh - 52px);overflow-y:auto;overscroll-behavior:contain}
+/* ── Índice lateral: misma tarjeta que el resto del documento ──── */
+.rail{position:sticky;top:26px}
+.rail details{background:var(--hoja);border:1px solid var(--regla);border-radius:var(--r);
+  box-shadow:var(--sombra);padding:16px 12px 14px;
+  max-height:calc(100vh - 52px);overflow-y:auto;overscroll-behavior:contain}
+.rail-cab{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  margin:0 4px 14px;padding-bottom:12px;border-bottom:1px solid var(--regla)}
 .rail-t{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--tinta-3);margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--regla-2);max-width:none}
-.rail a{position:relative;display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:baseline;
-  padding:7px 10px 7px 22px;border-radius:var(--r-s);
+  color:var(--tinta-3);margin:0;max-width:none}
+.rail-todo{padding:0;background:none;border:0;cursor:pointer;white-space:nowrap;
+  font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-3)}
+.rail-todo:hover{color:var(--estructural)}
+
+/* Cada entrada: número y nombre. Sin viñeta: el número ya ordena */
+.rail a{position:relative;display:grid;grid-template-columns:24px 1fr;gap:9px;align-items:baseline;
+  padding:8px 10px;border-radius:var(--r-s);
   font-size:13.5px;line-height:1.4;color:var(--tinta-2);text-decoration:none;
-  transition:color .16s,background .16s}
-.rail a span{font-family:var(--display);font-size:13px;font-weight:600;font-stretch:87.5%;
-  color:var(--tinta-3);font-variant-numeric:lining-nums tabular-nums;transition:color .16s}
-.rail a::before{content:'';position:absolute;left:6px;top:13px;width:7px;height:7px;border-radius:var(--r-full);
-  border:1.5px solid var(--regla-2);background:var(--hoja);transition:background .16s,border-color .16s}
+  transition:color .15s,background .15s}
+.rail a span{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.02em;
+  color:var(--tinta-3);font-variant-numeric:lining-nums tabular-nums;transition:color .15s}
 .rail a:hover{color:var(--tinta);background:var(--hoja-2)}
-.rail a:hover::before{border-color:var(--tinta-3)}
-.rail a.on{color:var(--estructural);font-weight:640;background:color-mix(in srgb,var(--estructural) 8%,transparent)}
+.rail a.on{color:var(--estructural);font-weight:640;background:color-mix(in srgb,var(--estructural) 9%,transparent)}
 .rail a.on span{color:var(--estructural)}
-.rail a.on::before{background:var(--estructural);border-color:var(--estructural)}
 .rail-g{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--tinta-3);
-  margin:20px 0 8px;padding:16px 0 0 10px;border-top:1px solid var(--regla);max-width:none}
+  margin:16px 0 6px;padding:14px 0 0 10px;border-top:1px solid var(--regla);max-width:none}
+
+/* Desplegable: el chevron solo se enciende cuando hace falta */
+.rail-s{position:relative}
+.rail-s>a{padding-right:30px}
+.rail-x{position:absolute;right:2px;top:7px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;
+  padding:0;background:none;border:0;border-radius:var(--r-xs);cursor:pointer;color:var(--tinta-3);
+  opacity:.45;transition:opacity .15s,color .15s,background .15s}
+.rail-s:hover .rail-x,.rail-x:focus-visible,.rail-x[aria-expanded="true"]{opacity:1}
+.rail-x:hover{color:var(--tinta);background:var(--hoja-2)}
+.rail-x>svg{display:block;width:9px;height:9px;transition:transform .18s ease}
+.rail-x[aria-expanded="true"]>svg{transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){.rail-x>svg{transition:none}}
+.rail-sub{position:relative;list-style:none;margin:0 0 8px;padding:0}
+.rail-sub::before{content:'';position:absolute;left:20px;top:0;bottom:9px;width:1px;background:var(--regla)}
+.rail-sub li{margin:0}
+.rail #toc .rail-sub a{display:block;padding:6px 10px 6px 34px;font-size:12.5px;line-height:1.45;color:var(--tinta-3)}
+.rail #toc .rail-sub a::before{content:'';position:absolute;left:20px;top:15px;width:9px;height:1px;
+  background:var(--regla-2);border:0;border-radius:0}
+.rail #toc .rail-sub a:hover{color:var(--tinta);background:var(--hoja-2)}
+
 @media(max-width:1000px){
-  .rail{position:static;max-height:none;margin-bottom:32px}
-  .rail details{background:var(--hoja);border:1px solid var(--regla);border-radius:var(--r);box-shadow:var(--sombra)}
+  .rail{position:static;margin-bottom:32px}
+  .rail details{max-height:none;padding:0}
   .rail summary{padding:15px 18px;cursor:pointer;font-weight:640;font-size:14.5px;list-style:none}
   .rail summary::-webkit-details-marker{display:none}
   .rail summary::after{content:" ▾";color:var(--tinta-3)}
-  .rail nav{padding:0 12px 16px}
-  .rail .rail-t{display:none}
-  .rail .bus,.rail #bus-r,.rail .bus-n,.rail .rev-mini,.rail .rail-todo{margin-left:12px;margin-right:12px}
-  .rail .bus{margin-top:14px}
+  .rail nav{padding:0 12px 14px}
+  .rail-cab{margin:14px 14px 12px}
+  .rail-cab .rail-t{display:none}
+  .rail .bus,.rail #bus-r,.rail .bus-n,.rail .rev-mini{margin-left:12px;margin-right:12px}
 }
-@media(min-width:1001px){.rail summary{display:none}.rail details{display:block}}
-
-/* ── Índice desplegable ───────────────────────────────────────── */
-.rail-s{position:relative}
-.rail-s>a{padding-right:34px}
-.rail-x{position:absolute;right:4px;top:6px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;
-  padding:0;background:none;border:0;border-radius:var(--r-xs);cursor:pointer;color:var(--tinta-3)}
-.rail-x:hover{color:var(--tinta);background:var(--hoja-2)}
-.rail-x>svg{display:block;width:10px;height:10px;transition:transform .18s ease}
-.rail-x[aria-expanded="true"]>svg{transform:rotate(90deg)}
-@media (prefers-reduced-motion:reduce){.rail-x>svg{transition:none}}
-.rail-sub{position:relative;list-style:none;margin:2px 0 10px;padding:0}
-.rail-sub::before{content:'';position:absolute;left:9px;top:2px;bottom:10px;width:1px;background:var(--regla-2)}
-.rail-sub li{margin:0}
-.rail #toc .rail-sub a{display:block;padding:6px 10px 6px 26px;font-size:12.5px;line-height:1.45;color:var(--tinta-3)}
-.rail #toc .rail-sub a::before{content:'';left:9px;top:15px;width:10px;height:1px;border:0;border-radius:0;background:var(--trazo)}
-.rail #toc .rail-sub a:hover{color:var(--tinta);background:var(--hoja-2)}
-.rail-todo{display:block;margin:0 0 14px;padding:0 10px;background:none;border:0;cursor:pointer;
-  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-3)}
-.rail-todo:hover{color:var(--estructural)}
+@media(min-width:1001px){.rail summary{display:none}}
 
 /* ── Buscador ─────────────────────────────────────────────────── */
 .bus{position:relative;margin:0 0 14px}
@@ -214,7 +221,6 @@ svg g.pop:nth-of-type(7){animation-delay:.46s}
 #bus-r{list-style:none;margin:0;padding:0}
 #bus-r li{margin:0}
 .rail #bus-r a{display:block;padding:8px 10px;border-radius:var(--r-s);font-size:12.5px;line-height:1.45}
-.rail #bus-r a::before{display:none}
 #bus-r .bus-s{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--tinta-3);margin-bottom:2px}
 #bus-r .bus-c{font-family:var(--mono);font-size:11.5px;font-weight:650;color:var(--estructural)}
@@ -592,7 +598,10 @@ td.rg{color:var(--tinta-3);font-weight:700}
   <aside class="rail">
     <details open>
       <summary>Contenido del PRD</summary>
-      <p class="rail-t">Contenido</p>
+      <div class="rail-cab">
+        <p class="rail-t">Contenido</p>
+        <button type="button" class="rail-todo" id="rail-todo" aria-expanded="false">Desplegar</button>
+      </div>
       <div class="bus">
         <svg class="bus-i" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="6.8" cy="6.8" r="4.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.3 10.3 L14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         <input type="search" id="bus" placeholder="Buscar en el PRD…" aria-label="Buscar en el documento" autocomplete="off" spellcheck="false" aria-controls="bus-r">
@@ -604,7 +613,6 @@ td.rg{color:var(--tinta-3);font-weight:700}
         <p class="rev-mini-n"><span id="rev-mini-c"></span> sin descargar</p>
         <button type="button" id="rev-mini-baj">Descargar</button>
       </div>
-      <button type="button" class="rail-todo" id="rail-todo" aria-expanded="false">Desplegar todo</button>
       <nav id="toc">
         <div class="rail-s" data-sec="s0">
           <a href="#s0"><span>00</span>Glosario</a>
@@ -2519,7 +2527,7 @@ td.rg{color:var(--tinta-3);font-weight:700}
       var expandir = todo.getAttribute('aria-expanded') !== 'true';
       grupos.forEach(function(g){ abrir(g, expandir); g.setAttribute('data-fijo', expandir ? '1' : ''); });
       todo.setAttribute('aria-expanded', expandir ? 'true' : 'false');
-      todo.textContent = expandir ? 'Plegar todo' : 'Desplegar todo';
+      todo.textContent = expandir ? 'Plegar' : 'Desplegar';
     });
   }
 
