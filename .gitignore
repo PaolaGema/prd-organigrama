@@ -1,0 +1,17 @@
+# Documentos de otros modulos: no forman parte de este repositorio
+PROPUESTA-ONBOARDING.html
+PROPUESTA-ONBOARDING.md
+PROPUESTA-ORGANIGRAMA-UX.html
+PROPUESTA-ORGANIGRAMA-UX.md
+PLANTILLA-PRD.md
+
+# Versiones anteriores del PRD
+archivo/
+
+# Vercel
+.vercel/
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store

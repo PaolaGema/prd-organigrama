@@ -1,0 +1,11 @@
+# Lo unico que se publica es PRD-ORGANIGRAMA.html + assets/
+
+# Fuentes en markdown: no se publican, solo viven en el repositorio
+*.md
+
+# Otros documentos del proyecto
+PROPUESTA-ONBOARDING.html
+PROPUESTA-ORGANIGRAMA-UX.html
+
+# Versiones archivadas
+archivo/
