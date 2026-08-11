@@ -78,18 +78,17 @@ code{font-family:var(--mono);font-size:.85em;background:var(--hoja-2);border:1px
 [hidden]{display:none!important}
 
 /* ══ Portada ═══════════════════════════════════════════════════ */
-.masthead{position:relative;background:linear-gradient(158deg,#0E3448 0%,#0C2D40 46%,#082334 100%);color:#EEF1F4;
+.masthead{background:linear-gradient(158deg,#0E3448 0%,#0C2D40 46%,#082334 100%);color:#EEF1F4;
   padding:60px 32px 44px;border-bottom:3px solid var(--marca-2)}
 @media (prefers-color-scheme:dark){:root:not([data-tema="claro"]) .masthead{background:linear-gradient(158deg,#0A2635 0%,#071B27 100%)}}
 :root[data-tema="oscuro"] .masthead{background:linear-gradient(158deg,#0A2635 0%,#071B27 100%)}
 .mh-in{max-width:1240px;margin:0 auto}
-.tema{position:absolute;top:22px;right:32px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;
-  padding:0;border-radius:var(--r-full);cursor:pointer;color:#EEF1F4;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
-  transition:background .15s,border-color .15s}
-.tema:hover{background:rgba(255,255,255,.17);border-color:var(--marca-2)}
-.tema svg{display:block;width:18px;height:18px}
-@media(max-width:600px){.tema{top:14px;right:16px;width:36px;height:36px}}
+.rail-acc{display:flex;align-items:center;gap:9px;flex:none}
+.tema{width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex:none;
+  padding:0;border-radius:var(--r-full);cursor:pointer;color:var(--tinta-3);
+  background:none;border:1px solid var(--regla-2);transition:color .15s,border-color .15s,background .15s}
+.tema:hover{color:var(--estructural);border-color:var(--estructural);background:var(--hoja-2)}
+.tema svg{display:block;width:14px;height:14px}
 @media print{.tema{display:none}}
 .mh-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,240px);gap:14px 56px;align-items:center;margin-bottom:38px}
 @media(max-width:900px){.mh-grid{grid-template-columns:1fr;gap:26px;align-items:start;margin-bottom:28px}}
@@ -178,7 +177,7 @@ svg g.pop:nth-of-type(7){animation-delay:.46s}
 .rail details{background:var(--hoja);border:1px solid var(--regla);border-radius:var(--r);
   box-shadow:var(--sombra);padding:16px 12px 14px;
   max-height:calc(100vh - 52px);overflow-y:auto;overscroll-behavior:contain}
-.rail-cab{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+.rail-cab{display:flex;align-items:center;justify-content:space-between;gap:12px;
   margin:0 4px 14px;padding-bottom:12px;border-bottom:1px solid var(--regla)}
 .rail-t{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--tinta-3);margin:0;max-width:none}
@@ -494,7 +493,6 @@ td.rg{color:var(--tinta-3);font-weight:700}
 <body>
 
 <header class="masthead">
-  <button type="button" class="tema" id="tema"></button>
   <div class="mh-in">
     <div class="mh-grid">
       <div>
@@ -626,7 +624,10 @@ td.rg{color:var(--tinta-3);font-weight:700}
       <summary>Contenido del PRD</summary>
       <div class="rail-cab">
         <p class="rail-t">Contenido</p>
-        <button type="button" class="rail-todo" id="rail-todo" aria-expanded="false">Desplegar</button>
+        <div class="rail-acc">
+          <button type="button" class="rail-todo" id="rail-todo" aria-expanded="false">Desplegar</button>
+          <button type="button" class="tema" id="tema"></button>
+        </div>
       </div>
       <div class="bus">
         <svg class="bus-i" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="6.8" cy="6.8" r="4.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.3 10.3 L14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
